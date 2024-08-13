@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hotel Website</title>
     <style>
-        /* Existing CSS */
-
+        /* Base CSS */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
@@ -47,21 +46,21 @@
         }
 
         h1 {
-            font-size: 3em;
+            font-size: 2em;
             font-weight: bold;
             margin: 0;
         }
 
         h2 {
             color: #8e44ad;
-            font-size: 2.5em;
+            font-size: 2em;
             margin-bottom: 20px;
             text-align: center;
         }
 
         section {
-            margin: 50px 20px;
-            padding: 30px;
+            margin: 20px 10px;
+            padding: 20px;
             background-color: white;
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -85,77 +84,26 @@
         }
 
         .room-gallery {
-            position: relative;
-            height: 600px; /* Adjust the height to fit scattered images */
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
         }
 
-        .room-gallery a img {
-            position: absolute;
-            transition: transform 0.3s, box-shadow 0.3s;
+        .room-gallery a {
+            width: 48%;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .room-gallery img {
+            width: 100%;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        /* Scattered images with different positions and rotations */
-        .room-gallery a:nth-child(1) img {
-            top: 10px;
-            left: 8px;
-            width: 20%;
-            transform: rotate(-10deg);
-        }
-
-        .room-gallery a:nth-child(2) img {
-            top: 10px;
-            left: 1000px;
-            width: 25%;
-            transform: rotate(15deg);
-        }
-
-        .room-gallery a:nth-child(3) img {
-            top: 80px;
-            left: 800px;
-            width: 22%;
-            transform: rotate(-5deg);
-        }
-
-        .room-gallery a:nth-child(4) img {
-            top: 310px;
-            left: 50px;
-            width: 30%;
-            transform: rotate(8deg);
-        }
-
-        .room-gallery a:nth-child(5) img {
-            top: 300px;
-            left: 1050px;
-            width: 20%;
-            transform: rotate(-15deg);
-        }
-
-        .room-gallery a:nth-child(6) img {
-            top: 80px;
-            left: 200px;
-            width: 24%;
-            transform: rotate(10deg);
-        }
-
-        .room-gallery a:nth-child(7) img {
-            top: 300px;
-            left: 900px;
-            width: 18%;
-            transform: rotate(-8deg);
-        }
-
-        .room-gallery a:nth-child(8) img {
-            top: 300px;
-            left: 500px;
-            width: 25%;
-            transform: rotate(5deg);
-        }
-
-        .room-gallery a img:hover {
-            transform: scale(1.1) rotate(0deg);
+        .room-gallery img:hover {
+            transform: scale(1.05);
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
         }
 
@@ -218,30 +166,77 @@
             margin-top: 50px;
         }
 
-        /* Updated Hero Section CSS */
+        /* Responsive Hero Section */
         #hero {
             position: relative;
             width: 100%;
-            height: 500px;
-            /* Increased height */
+            height: 300px;
             overflow: hidden;
         }
 
         #hero img {
             width: 100%;
-            height: 500px;
-            /* Adjusted to fit the new height */
+            height: 300px;
             object-fit: cover;
             position: absolute;
             top: 0;
             left: 0;
             transition: opacity 1.5s ease-in-out;
-            /* Smooth transition */
             opacity: 0;
         }
 
         #hero img.active {
             opacity: 1;
+        }
+
+        /* Media Queries for Responsive Design */
+        @media (min-width: 768px) {
+            #hero {
+                height: 400px;
+            }
+
+            #hero img {
+                height: 400px;
+            }
+
+            .room-gallery a {
+                width: 23%;
+            }
+
+            h1 {
+                font-size: 3em;
+            }
+
+            h2 {
+                font-size: 2.5em;
+            }
+
+            section {
+                margin: 50px 20px;
+                padding: 30px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            #hero {
+                height: 500px;
+            }
+
+            #hero img {
+                height: 500px;
+            }
+
+            .room-gallery a {
+                width: 22%;
+            }
+
+            h1 {
+                font-size: 3.5em;
+            }
+
+            h2 {
+                font-size: 3em;
+            }
         }
     </style>
 </head>
@@ -285,7 +280,7 @@
         </form>
     </section>
 
-    <!-- Rooms Section with Clickable Images and Scattered Layout -->
+    <!-- Rooms Section with Clickable Images and Responsive Layout -->
     <section id="rooms">
         <h2>Our Rooms</h2>
         <div class="room-gallery">
