@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Website</title>
+    <style>
+        /* Existing CSS */
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, #f06, #8e44ad);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #f39c12;
+        }
+
+        h1 {
+            font-size: 3em;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        h2 {
+            color: #8e44ad;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        section {
+            margin: 50px 20px;
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        #booking {
+            background: #8e44ad;
+            color: white;
+        }
+
+        #booking h2 {
+            color: white;
+        }
+
+        #rooms {
+            background: #f39c12;
+        }
+
+        #rooms h2 {
+            color: white;
+        }
+
+        .room-gallery {
+            position: relative;
+            height: 600px; /* Adjust the height to fit scattered images */
+        }
+
+        .room-gallery a img {
+            position: absolute;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+
+        /* Scattered images with different positions and rotations */
+        .room-gallery a:nth-child(1) img {
+            top: 10px;
+            left: 8px;
+            width: 20%;
+            transform: rotate(-10deg);
+        }
+
+        .room-gallery a:nth-child(2) img {
+            top: 10px;
+            left: 1000px;
+            width: 25%;
+            transform: rotate(15deg);
+        }
+
+        .room-gallery a:nth-child(3) img {
+            top: 80px;
+            left: 800px;
+            width: 22%;
+            transform: rotate(-5deg);
+        }
+
+        .room-gallery a:nth-child(4) img {
+            top: 310px;
+            left: 50px;
+            width: 30%;
+            transform: rotate(8deg);
+        }
+
+        .room-gallery a:nth-child(5) img {
+            top: 300px;
+            left: 1050px;
+            width: 20%;
+            transform: rotate(-15deg);
+        }
+
+        .room-gallery a:nth-child(6) img {
+            top: 80px;
+            left: 200px;
+            width: 24%;
+            transform: rotate(10deg);
+        }
+
+        .room-gallery a:nth-child(7) img {
+            top: 300px;
+            left: 900px;
+            width: 18%;
+            transform: rotate(-8deg);
+        }
+
+        .room-gallery a:nth-child(8) img {
+            top: 300px;
+            left: 500px;
+            width: 25%;
+            transform: rotate(5deg);
+        }
+
+        .room-gallery a img:hover {
+            transform: scale(1.1) rotate(0deg);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        #about {
+            background: #3498db;
+            color: white;
+        }
+
+        #about h2 {
+            color: #ecf0f1;
+        }
+
+        #contact {
+            background: #2ecc71;
+            color: white;
+        }
+
+        #contact h2 {
+            color: white;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label,
+        input,
+        textarea,
+        button {
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        input,
+        textarea {
+            border: none;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+
+        /* Updated Hero Section CSS */
+        #hero {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            /* Increased height */
+            overflow: hidden;
+        }
+
+        #hero img {
+            width: 100%;
+            height: 500px;
+            /* Adjusted to fit the new height */
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: opacity 1.5s ease-in-out;
+            /* Smooth transition */
+            opacity: 0;
+        }
+
+        #hero img.active {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Home Page -->
+    <header>
+        <h1>Welcome to Our Hotel</h1>
+        <nav>
+            <ul>
+                <li><a href="simple.html">Home</a></li>
+                <li><a href="aboutus.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Updated Hero Section -->
+    <section id="hero">
+        <img src="room1.jpg" alt="Hero Image 1" class="active">
+        <img src="room2.jpg" alt="Hero Image 2">
+        <img src="room3.jpg" alt="Hero Image 3">
+        <img src="room4.png" alt="Hero Image 4">
+        <img src="room5.png" alt="Hero Image 5">
+    </section>
+
+    <!-- Booking Section -->
+    <section id="booking">
+        <h2>Book Your Stay</h2>
+        <form id="bookingForm">
+            <label for="checkIn">Check-In Date:</label>
+            <input type="date" id="checkIn" required>
+
+            <label for="checkOut">Check-Out Date:</label>
+            <input type="date" id="checkOut" required>
+
+            <label for="guests">Number of Guests:</label>
+            <input type="number" id="guests" min="1" required>
+
+            <button type="submit">Check Availability</button>
+        </form>
+    </section>
+
+    <!-- Rooms Section with Clickable Images and Scattered Layout -->
+    <section id="rooms">
+        <h2>Our Rooms</h2>
+        <div class="room-gallery">
+            <a href="room1.html"><img src="room1.jpg" alt="Room 1"></a>
+            <a href="room2.html"><img src="room2.jpg" alt="Room 2"></a>
+            <a href="room3.html"><img src="room3.jpg" alt="Room 3"></a>
+            <a href="room4.html"><img src="room4.png" alt="Room 4"></a>
+            <a href="room5.html"><img src="room5.png" alt="Room 5"></a>
+            <a href="room6.html"><img src="room6.jpg" alt="Room 6"></a>
+            <a href="room7.html"><img src="room7.jpg" alt="Room 7"></a>
+            <a href="room8.html"><img src="room8.jpg" alt="Room 8"></a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Our Hotel. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Hero section auto-slide script with smooth transitions
+        let currentIndex = 0;
+        const images = document.querySelectorAll('#hero img');
+        const totalImages = images.length;
+
+        setInterval(() => {
+            images[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + 1) % totalImages;
+            images[currentIndex].classList.add('active');
+        }, 10000); // Change every 10 seconds
+
+        // Booking form script
+        document.getElementById('bookingForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert('Your room is available! Please proceed to payment.');
+        });
+    </script>
+</body>
+
+</html>

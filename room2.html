@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Checkout</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+    
+        body {
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            animation: fadeIn 1s ease-in-out;
+        }
+    
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    
+        header {
+            background: linear-gradient(135deg, #f06, #8e44ad);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #f39c12;
+        }
+    
+        @keyframes slideInFromTop {
+            from { transform: translateY(-100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    
+        h1 {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin: 20px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+    
+        h2 {
+            color: #8e44ad;
+            font-size: 2em;
+            margin: 20px 0;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+    
+        h2::after {
+            content: '';
+            width: 50px;
+            height: 3px;
+            background-color: #f39c12;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: growLine 1s ease;
+        }
+    
+        @keyframes growLine {
+            from { width: 0; }
+            to { width: 50px; }
+        }
+    
+        section {
+            margin: 50px 20px;
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+        }
+    
+        @keyframes fadeInUp {
+            to { transform: translateY(0); opacity: 1; }
+        }
+    
+        .room-gallery {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 15px;
+    position: relative;
+    overflow: hidden;
+}
+
+.room-gallery img {
+    width: 20%;
+    border-radius: 15px;
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    cursor: pointer;
+}
+
+.room-gallery img:hover {
+    transform: scale(1.1) rotate(3deg);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+.expanded-img-overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.expanded-img-overlay img {
+    width: 50%;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease-in-out;
+}
+
+.expanded-img-overlay img:hover {
+    transform: scale(1.05);
+}
+
+    
+        .room-gallery img:nth-child(odd) {
+            animation: float1 3s ease-in-out infinite;
+        }
+    
+        .room-gallery img:nth-child(even) {
+            animation: float2 3s ease-in-out infinite;
+        }
+    
+        @keyframes float1 {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+    
+        @keyframes float2 {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
+            100% { transform: translateY(0); }
+        }
+    
+        .price-options {
+            margin: 20px 0;
+            display: flex;
+            justify-content: space-around;
+            animation: fadeIn 1.5s ease;
+        }
+    
+        .price-options label {
+            font-size: 1.2em;
+        }
+    
+        .price-options input {
+            margin-right: 10px;
+        }
+    
+        button {
+            background-color: #8e44ad;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+    
+        button:hover {
+            background-color: #f39c12;
+            transform: scale(1.05);
+        }
+    
+        .other-rooms {
+            margin-top: 50px;
+        }
+    
+        .other-rooms h2 {
+            color: #2ecc71;
+        }
+    
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+            animation: fadeIn 2s ease;
+        }
+    </style>    
+</head>
+<body>
+        <header>
+            <h1>Room Checkout</h1>
+            <nav>
+                <ul>
+                    <li><a href="simple.html">Home</a></li>
+                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+    <section>
+        <h2>Room Gallery</h2>
+        <div class="room-gallery">
+            <img src="room2.jpg" alt="Room Image 1">
+            <img src="room3.jpg" alt="Room Image 2">
+            <img src="room4.png" alt="Room Image 3">
+            <img src="room5.png" alt="Room Image 4">
+        </div>
+        <div id="expanded-img-overlay" class="expanded-img-overlay">
+            <img id="expanded-img" src="" alt="Expanded Room Image">
+        </div>
+    </section>
+    
+    <section>
+        <h2>Select Your Stay</h2>
+        <div class="price-options">
+            <label>
+                <input type="radio" name="price" value="standard" checked> Standard - $100/night
+            </label>
+            <label>
+                <input type="radio" name="price" value="deluxe"> Deluxe - $150/night
+            </label>
+            <label>
+                <input type="radio" name="price" value="suite"> Suite - $200/night
+            </label>
+        </div>
+        <a href="paymentpage.html">
+            <button>Proceed to Payment</button>
+        </a>
+    </section>
+
+    <section class="other-rooms">
+        <h2>More Rooms to Explore</h2>
+        <div class="room-gallery">
+            <a href="room8.html"><img src="room8.jpg" alt="Room 8"></a>
+            <a href="room9.html"><img src="room9.jpg" alt="Room 9"></a>
+            <a href="room10.html"><img src="room10.jpg" alt="Room 10"></a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Our Hotel. All rights reserved.</p>
+    </footer>
+    <script>
+        document.querySelectorAll('.room-gallery img').forEach(img => {
+    img.addEventListener('click', function() {
+        const expandedImgOverlay = document.getElementById('expanded-img-overlay');
+        const expandedImg = document.getElementById('expanded-img');
+        expandedImg.src = this.src;
+        expandedImgOverlay.style.display = 'flex';
+    });
+});
+
+document.getElementById('expanded-img-overlay').addEventListener('click', function() {
+    this.style.display = 'none';
+});
+
+    </script>
+</body>
+</html>
